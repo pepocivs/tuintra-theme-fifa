@@ -20,15 +20,15 @@
         }
       </style>
 
-      <template is="dom-if" if="[[isLink]]">
-          <template is="dom-repeat" items="[[itemList]]">
-            <a href$="{{goTo}}?itemId={{item._id}}" class="invisible-a">
-              <div class="item-box item-box-overflow small" style="background-image: url('../images/items/{{item.picture}}');">
-                <div class="item-name"><div>{{item.name}}</div></div>
-              </div>
-            </a>
+      <template is="dom-repeat" items="{{teamResponse}}" >
+          <p>{{item.teamName}}</p>
+          <template is="dom-if" if="[[!item.picture]]">
+            <img src="https://image.freepik.com/free-vector/business-team-avatars-in-a-flat-style_23-2147533927.jpg" alt="" style="width:50px;">
           </template>
-        </template>
+          <template is="dom-if" if="[[item.picture]]" >
+            <img src$="{{item.picture}}" alt="" style="width:50px;">
+          </template>
+      </template>
 
 
     </template>  

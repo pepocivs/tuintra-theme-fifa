@@ -31,24 +31,81 @@
           height: 100vh;
           overflow: scroll;
         }
+        .thumbnail-team{
+          max-width: 350px;
+          width: 350px;
+          display: block;
+          padding: 11px;
+          margin-bottom: 20px;
+          /* line-height: 1.42857143; */
+          background-color: rgba(255, 255, 255, 0.22);
+          border: 1px solid rgba(255, 255, 255, 0.03);
+          border-radius: 0;
+          -webkit-transition: all .4s ease-in-out;
+          transition: all .4s ease-in-out;
+        }
+        .img-thumbnail-team{
+          height: 238px;
+          background-size: cover;
+          background-position: center;
+        }
+        .thumbnail-team:hover {
+            background-color: #e8af44;
+        }
+        .container{
+          max-width: 1164px;
+          background-color: var(--app-quaternary-color);
+        }
+        .caption p, .caption h3 {
+            margin-left: 3%;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+            margin-top: 3px;
+            color: white;
+            font-family: "raleway";
+        }
       </style>
 
       <iron-ajax auto
                  url="http://api.tuintra.com/ginerdelosrios.es/teams"
                  params='{}'
                  handle-as="json"
-                 last-response="{{itemResponse}}"></iron-ajax>
+                 last-response="{{teamResponse}}">
 
-      <div class="layout vertical " style="height:100%;">
+      </iron-ajax>
+
+      <div class="layout horizontal wrap around-justified  " style="height:100%;">
 
       <div>
-        <div class="layout horizontal wrap around-justified">
-          <h2>equipos</h2>
+        <div class="layout horizontal wrap around-justified container">
+
+          <h2>equipos</h2> <br>
+
+          <template is="dom-repeat" items="{{teamResponse}}" >
+
+              <div class="thumbnail-team">
+                
+                <template is="dom-if" if="[[!item.picture]]">
+                  <div class="img-thumbnail-team" style="background-image:url(https://image.freepik.com/free-vector/business-team-avatars-in-a-flat-style_23-2147533927.jpg);"></div>
+                </template>
+                <template is="dom-if" if="[[item.picture]]" class="wrap">
+                  <div class="img-thumbnail-team" style="background-image:url({{item.picture}});"></div>
+                  
+                </template>
+                <div class="caption">
+                  <h3>{{item.teamName}}</h3>
+                  <p>{{item.category}}&nbsp;{{item.gender}}</p>
+                </div>
+                
+              </div>
+              
+          </template>
+
+
 
         </div>
       </div>
-
-      <tuintra-team item-list="[[itemResponse]]" inventory="{{inventory}}" class="over"></tuintra-team>
+      
 
       </div>
 
