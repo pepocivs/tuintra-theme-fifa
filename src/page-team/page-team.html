@@ -48,21 +48,72 @@
           height: 238px;
           background-size: cover;
           background-position: center;
+          color: white;
         }
         .thumbnail-team:hover {
             background-color: #e8af44;
         }
         .container{
           max-width: 1164px;
+          padding: 0 11px;
           background-color: var(--app-quaternary-color);
         }
-        .caption p, .caption h3 {
+        .caption p, .caption h3, .caption button.boton{
             margin-left: 3%;
             text-transform: uppercase;
             margin-bottom: 3px;
             margin-top: 3px;
             color: white;
             font-family: "raleway";
+        }
+        .boton {
+            background-color: var(--app-primary-color);
+            padding: 8px;
+            border: none;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        .thumbnail-team:hover button.boton{
+            background-color: #ffffff;
+            color: var(--app-primary-color);
+            -webkit-transition: all .4s ease-in-out; */
+            -o-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out; */
+        }
+        .thumbnail-team:hover div.img-thumbnail-team{
+            background-size: 200%;
+            -webkit-transition: background-size 2s ease-in;
+            -o-transition: scale(2) .4s ease-in-out;
+            transition: scale(2) .4s ease-in-out; */
+        }
+        h1.tituloseccion {
+            color: white;
+            text-transform: uppercase;
+            font-family: "raleway";
+            font-weight: 100;
+            font-size: 2em;
+            letter-spacing: 4px;
+            text-align: center;
+        }
+        .cajatitulo {
+            margin: 23px 0 33px;
+            width: 100%;
+            position: relative;
+        }
+        .tituloseccion:before {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            bottom: -5px;
+            content: "";
+        }
+        .tituloseccion:before {
+            background: var(--app-primary-color);
         }
       </style>
 
@@ -74,12 +125,15 @@
 
       </iron-ajax>
 
-      <div class="layout horizontal wrap around-justified  " style="height:100%;">
-
-      <div>
-        <div class="layout horizontal wrap around-justified container">
-
-          <h2>equipos</h2> <br>
+    
+        
+        <div class="layout horizontal wrap justified container">
+          
+          <div class="text-center cajatitulo">
+            <h1 class="tituloseccion">Nuestros equipos</h1>
+          </div>
+          
+          
 
           <template is="dom-repeat" items="{{teamResponse}}" >
 
@@ -95,6 +149,7 @@
                 <div class="caption">
                   <h3>{{item.teamName}}</h3>
                   <p>{{item.category}}&nbsp;{{item.gender}}</p>
+                  <button href="equipo.html" class="button boton"><span>Ir a Equipo</span></button>
                 </div>
                 
               </div>
@@ -104,10 +159,7 @@
 
 
         </div>
-      </div>
       
-
-      </div>
 
     </template>
 

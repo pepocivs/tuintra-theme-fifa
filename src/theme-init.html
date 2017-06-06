@@ -54,6 +54,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
       }
+      :host([has-scrolling-region]) > ::content > app-header{
+        position: relative;
+      }
 
       .drawer-list {
         margin: 0 20px;
@@ -71,7 +74,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
         font-weight: bold;
       }
+      .content-tuintra{
+          max-width: 1164px;
+          margin:   auto;
+      }
     </style>
+<div class="content-tuintra"> 
+
 
     <app-location route="{{route}}"></app-location>
     <app-route
@@ -101,7 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       </div>
 
-
+</div>
 
   </template>
 
