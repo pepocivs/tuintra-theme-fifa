@@ -149,7 +149,7 @@
                 <div class="caption">
                   <h3>{{item.teamName}}</h3>
                   <p>{{item.category}}&nbsp;{{item.gender}}</p>
-                  <paper-button on-tap="goTo" teamid$="{{item._id}}" class="button boton"><span>Ir a Equipo</span></paper-button>
+                  <button on-tap="goTo" teamid="{{item._id}}" class="button boton">Ir a Equipo</button>
                 </div>
                 
               </div>
@@ -170,6 +170,7 @@
           },
           goTo: function(e) {
             console.log(e.target.teamid);
+            window.location.href='/team?id='+e.target.teamid;
           }
         });
     </script>

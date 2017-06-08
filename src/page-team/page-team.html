@@ -118,8 +118,7 @@
       </style>
 
       <iron-ajax auto
-                 url="http://api.tuintra.com/ginerdelosrios.es/teams"
-                 params='{}'
+                 url="http://api.tuintra.com/ginerdelosrios.es/people?teamId={{teamid}}"
                  handle-as="json"
                  last-response="{{teamResponse}}">
 
@@ -130,31 +129,16 @@
         <div class="layout horizontal wrap justified container">
           
           <div class="text-center cajatitulo">
-            <h1 class="tituloseccion">Nuestros equipos</h1>
+            <h1 class="tituloseccion">{{teamid}}</h1>
+
           </div>
-          
-          
+          <div>{{teamResponse}} </div>
 
-          <template is="dom-repeat" items="{{teamResponse}}" >
-
-              <div class="thumbnail-team">
-                
-                <template is="dom-if" if="[[!item.picture]]">
-                  <div class="img-thumbnail-team" style="background-image:url(https://image.freepik.com/free-vector/business-team-avatars-in-a-flat-style_23-2147533927.jpg);"></div>
-                </template>
-                <template is="dom-if" if="[[item.picture]]" class="wrap">
-                  <div class="img-thumbnail-team" style="background-image:url({{item.picture}});"></div>
-                  
-                </template>
-                <div class="caption">
-                  <h3>{{item.teamName}}</h3>
-                  <p>{{item.category}}&nbsp;{{item.gender}}</p>
-                  <button href$="team?itemId={{item._id}}" class="button boton"><span>Ir a Equipo</span></button>
-                </div>
-                
-              </div>
-              
+          <template is="dom-repeat" items="{{teamResponse}}">
+              <img src="{{item.playerData.picture}}" alt="">
           </template>
+
+          
 
 
 
@@ -167,7 +151,26 @@
         Polymer({
           is: 'page-team',
           properties: {
+            teamid:{
+              type:Number
+            }
+          },
+          ready: function() {
+            var params = this._getRouteVariables();
+            console.log(params);
+            this.teamid = params.id;
+          },
+          _getRouteVariables: function() {
+            var pairs = window.location.search.substring(1).split('&');
+            var obj = {};
+            for (i in pairs) {
+              if (pairs[i] === '') continue;
+              var pair = pairs[i].split('=');
+              obj[decodeURIComponent(pair[0])] = JSON.parse(decodeURIComponent(pair[1]));
+            }
+            return obj;
           }
+
         });
     </script>
 </dom-module>
