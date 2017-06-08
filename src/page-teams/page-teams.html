@@ -4,7 +4,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../general-style.html">
 
-<dom-module id="page-team">
+<dom-module id="page-teams">
     <template>
       <style include="general-style iron-flex iron-flex-alignment">
         :host {
@@ -149,7 +149,7 @@
                 <div class="caption">
                   <h3>{{item.teamName}}</h3>
                   <p>{{item.category}}&nbsp;{{item.gender}}</p>
-                  <button href$="team?itemId={{item._id}}" class="button boton"><span>Ir a Equipo</span></button>
+                  <paper-button on-tap="goTo" teamid$="{{item._id}}" class="button boton"><span>Ir a Equipo</span></paper-button>
                 </div>
                 
               </div>
@@ -165,8 +165,11 @@
 
     <script>
         Polymer({
-          is: 'page-team',
+          is: 'page-teams',
           properties: {
+          },
+          goTo: function(e) {
+            console.log(e.target.teamid);
           }
         });
     </script>
