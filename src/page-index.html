@@ -8,29 +8,25 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
-<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/menu-title-tuintra/menu-title-tuintra.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="tuintra-bar.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="app-elements/tuintra-bar.html">
 <link href="https://fonts.googleapis.com/css?family=Raleway:100,400,800&amp;subset=latin-ext" rel="stylesheet">
 
-
-
-<link rel="import" href="my-icons.html">
-<link rel="import" href="general-style.html">
-
-<dom-module id="theme-init">
+<link rel="import" href="../src/general-style.html">
+<dom-module id="page-index">
   <template>
     <style include="general-style">
       :host {
@@ -79,7 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           margin:   auto;
       }
     </style>
-<div class="content-tuintra"> 
+<div class="content-tuintra">
 
 
     <app-location route="{{route}}"></app-location>
@@ -89,27 +85,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
+    <iron-ajax auto
+               url="http://api.tuintra.com/ginerdelosrios.es/info"
+               params='{}'
+               handle-as="json"
+               last-response="{{clubResponse}}">
 
-      <!-- Drawer content -->
-
+    </iron-ajax>
 
       <!-- Main content -->
       <div class="flex layout horizontal">
-        <menu-title-tuintra flex main-title
-                logo="http://ginerdelosrios.es/intranet/images/clients/shields100/l_17afd750654807849b6471e1f1021885.png"
-                equipo="giner de los rios"
-                deporte="club de hockey"
-                facebook="facebook">
-      </menu-title-tuintra>
+        <template is="dom-repeat" items="{{clubResponse}}" as="clubData">
+          <menu-title-tuintra flex main-title
+                  logo="{{clubData.options.clubs_shield}}"
+                  equipo="{{clubData.clubName}}"
+                  deporte="{{clubData.clubType}}"
+                  facebook="facebook">
+          </menu-title-tuintra>
+        </template>
 
       <tuintra-bar></tuintra-bar>
-      
+
       <page-news></page-news>
       <page-teams></page-teams>
       <page-team></page-team>
 
-
-      </div>
+    </div>
 
 </div>
 
@@ -117,7 +118,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
     Polymer({
-      is: 'theme-init',
+      is: 'page-index',
 
      properties: {
         page: {
@@ -140,7 +141,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       _pageChanged: function(page) {
         var resolvedPageUrl = this.resolveUrl('page-'+page+'/page-'+ page + '.html');
-        console.log('page-'+page+'/page-'+ page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
       },
       _showPage404: function() {

@@ -2,6 +2,7 @@
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../app-elements/tuintra-newcard.html">
 <link rel="import" href="../general-style.html">
 
 <dom-module id="page-news">
@@ -10,47 +11,25 @@
         :host {
           display: block;
         }
-        .flat-button{
-            TEXT-ALIGN: center;
-            background: #bdc3c7;
-            color: white;
-            border-radius: 10px;
-            padding: 16px;
-            font-weight: 800;
-            margin: 19px;
-            box-shadow: 0px 5px 0px 0px #95a5a6;
-            justify-content: center;
-            margin-right: 0;
-            margin-left: 0;
-        }
-        .flat-back-principal{
-          background-color: #ecf0f1;
-        }
-
-        .over{
-          height: 100vh;
-          overflow: scroll;
-        }
       </style>
 
       <iron-ajax auto
-                 url="http://api.tuintra.com/ginerdelosrios.es/teams"
+                 url="http://api.tuintra.com/ginerdelosrios.es/news"
                  params='{}'
                  handle-as="json"
-                 last-response="{{itemResponse}}"></iron-ajax>
+                 last-response="{{newsResponse}}"></iron-ajax>
 
-      <div class="layout vertical " style="height:100%;">
+     <div class="layout horizontal wrap justified container">
 
-      <div>
-        <div class="layout horizontal wrap around-justified">
-          <h2>News</h2>
+       <div class="text-center cajatitulo">
+         <h1 class="tituloseccion">Notícias</h1>
+       </div>
 
-        </div>
-      </div>
+       <template is="dom-repeat" items="{{newsResponse}}">
+         <tuintra-newcard new="{{item}}"></tuintra-newcard>
+       </template>
 
-      <tuintra-team item-list="[[itemResponse]]" inventory="{{inventory}}" class="over"></tuintra-team>
-
-      </div>
+     </div>
 
     </template>
 
@@ -58,6 +37,9 @@
         Polymer({
           is: 'page-news',
           properties: {
+            newsResponse: {
+              type: Object
+            }
           }
         });
     </script>

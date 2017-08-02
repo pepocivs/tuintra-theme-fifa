@@ -1,0 +1,41 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../general-style.html">
+<link rel="import" href="card-style.html">
+
+<dom-module id="tuintra-newcard">
+    <template>
+      <style include="general-style card-style iron-flex iron-flex-alignment">
+        :host {
+          display: block;
+        }
+      </style>
+
+      <div class="thumbnail-team">
+        <template is="dom-if" if="[[!new.image]]">
+          <div class="img-thumbnail-team" style="background-image:url(https://image.freepik.com/free-vector/business-team-avatars-in-a-flat-style_23-2147533927.jpg);"></div>
+        </template>
+        <template is="dom-if" if="[[new.image]]" class="wrap">
+          <div class="img-thumbnail-team" style="background-image:url({{new.image}});"></div>
+
+        </template>
+        <div class="caption">
+          <h3>{{new.title}}</h3>
+          <p>{{new.subtitle}}</p>
+          <button on-tap="goTo" teamid="{{item._id}}" class="button boton">Leer más</button>
+        </div>
+      </div>
+
+
+    </template>
+
+    <script>
+        Polymer({
+            is: 'tuintra-newcard',
+            properties: {
+              new: {
+                type: Object
+              }
+            }
+        });
+    </script>
+</dom-module>

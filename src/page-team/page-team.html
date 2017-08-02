@@ -2,6 +2,8 @@
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../app-elements/tuintra-peoplecard.html">
+
 <link rel="import" href="../general-style.html">
 
 <dom-module id="page-team">
@@ -10,140 +12,40 @@
         :host {
           display: block;
         }
-        .flat-button{
-            TEXT-ALIGN: center;
-            background: #bdc3c7;
-            color: white;
-            border-radius: 10px;
-            padding: 16px;
-            font-weight: 800;
-            margin: 19px;
-            box-shadow: 0px 5px 0px 0px #95a5a6;
-            justify-content: center;
-            margin-right: 0;
-            margin-left: 0;
-        }
-        .flat-back-principal{
-          background-color: #ecf0f1;
-        }
-
-        .over{
-          height: 100vh;
-          overflow: scroll;
-        }
-        .thumbnail-team{
-          max-width: 350px;
-          width: 350px;
-          display: block;
-          padding: 11px;
-          margin-bottom: 20px;
-          /* line-height: 1.42857143; */
-          background-color: rgba(255, 255, 255, 0.22);
-          border: 1px solid rgba(255, 255, 255, 0.03);
-          border-radius: 0;
-          -webkit-transition: all .4s ease-in-out;
-          transition: all .4s ease-in-out;
-        }
-        .img-thumbnail-team{
-          height: 238px;
-          background-size: cover;
-          background-position: center;
-          color: white;
-        }
-        .thumbnail-team:hover {
-            background-color: #e8af44;
-        }
-        .container{
-          max-width: 1164px;
-          padding: 0 11px;
-          background-color: var(--app-quaternary-color);
-        }
-        .caption p, .caption h3, .caption button.boton{
-            margin-left: 3%;
-            text-transform: uppercase;
-            margin-bottom: 3px;
-            margin-top: 3px;
-            color: white;
-            font-family: "raleway";
-        }
-        .boton {
-            background-color: var(--app-primary-color);
-            padding: 8px;
-            border: none;
-            color: white;
-            text-transform: uppercase;
-            font-weight: 800;
-            cursor: pointer;
-        }
-        .thumbnail-team:hover button.boton{
-            background-color: #ffffff;
-            color: var(--app-primary-color);
-            -webkit-transition: all .4s ease-in-out; */
-            -o-transition: all .4s ease-in-out;
-            transition: all .4s ease-in-out; */
-        }
-        .thumbnail-team:hover div.img-thumbnail-team{
-            background-size: 200%;
-            -webkit-transition: background-size 2s ease-in;
-            -o-transition: scale(2) .4s ease-in-out;
-            transition: scale(2) .4s ease-in-out; */
-        }
-        h1.tituloseccion {
-            color: white;
-            text-transform: uppercase;
-            font-family: "raleway";
-            font-weight: 100;
-            font-size: 2em;
-            letter-spacing: 4px;
-            text-align: center;
-        }
-        .cajatitulo {
-            margin: 23px 0 33px;
-            width: 100%;
-            position: relative;
-        }
-        .tituloseccion:before {
-            position: absolute;
-            width: 100px;
-            height: 2px;
-            margin: 0 auto;
-            left: 0;
-            right: 0;
-            bottom: -5px;
-            content: "";
-        }
-        .tituloseccion:before {
-            background: var(--app-primary-color);
-        }
       </style>
 
       <iron-ajax auto
-                 url="http://api.tuintra.com/ginerdelosrios.es/people?teamId={{teamid}}"
+                 url="http://api.tuintra.com/ginerdelosrios.es/teams?teamId={{teamid}}"
                  handle-as="json"
-                 last-response="{{teamResponse}}">
-
+                 last-response="{{teamData}}">
       </iron-ajax>
 
-    
-        
+
+
         <div class="layout horizontal wrap justified container">
-          
-          <div class="text-center cajatitulo">
-            <h1 class="tituloseccion">{{teamid}}</h1>
 
-          </div>
-          <div>{{teamResponse}} </div>
-
-          <template is="dom-repeat" items="{{teamResponse}}">
-              <img src="{{item.playerData.picture}}" alt="">
+          <template is="dom-repeat" items="{{teamData}}">
+            <div class="text-center cajatitulo">
+              <h1 class="tituloseccion">{{item.teamName}} - {{item.category}} {{item.gender}}</h1>
+            </div>
           </template>
 
-          
+          <h1 class="tituloseccion">Entrenadores</h1>
+          <template is="dom-repeat" items="{{teamData.staff}}">
+            <tuintra-peoplecard player="{{item}}" teamId="{{teamid}}"></tuintra-peoplecard>
+          </template>
+
+          <h1 class="tituloseccion">Jugadores</h1>
+          <template is="dom-repeat" items="{{teamData.players}}">
+            <tuintra-peoplecard player="{{item}}" teamId="{{teamid}}"></tuintra-peoplecard>
+          </template>
+
+
 
 
 
         </div>
-      
+
 
     </template>
 
@@ -151,13 +53,15 @@
         Polymer({
           is: 'page-team',
           properties: {
-            teamid:{
-              type:Number
+            teamid: {
+              type: Number
+            },
+            teamData: {
+              type: Object
             }
           },
           ready: function() {
             var params = this._getRouteVariables();
-            console.log(params);
             this.teamid = params.id;
           },
           _getRouteVariables: function() {
