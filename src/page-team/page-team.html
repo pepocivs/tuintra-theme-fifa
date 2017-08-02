@@ -15,7 +15,7 @@
       </style>
 
       <iron-ajax auto
-                 url="http://api.tuintra.com/ginerdelosrios.es/teams?teamId={{teamid}}"
+                 url="http://api.tuintra.com/ginerdelosrios.es/teams?teamId={{teamid}}&showMembers=true"
                  handle-as="json"
                  last-response="{{teamData}}">
       </iron-ajax>
@@ -28,17 +28,17 @@
             <div class="text-center cajatitulo">
               <h1 class="tituloseccion">{{item.teamName}} - {{item.category}} {{item.gender}}</h1>
             </div>
-          </template>
 
-          <h1 class="tituloseccion">Entrenadores</h1>
-          <template is="dom-repeat" items="{{teamData.staff}}">
-            <tuintra-peoplecard player="{{item}}" teamId="{{teamid}}"></tuintra-peoplecard>
-          </template>
+            <h1 class="tituloseccion">Entrenadores</h1>
+            <template is="dom-repeat" items="{{item.staff}}">
+              <tuintra-peoplecard people="{{item}}"></tuintra-peoplecard>
+            </template>
 
-          <h1 class="tituloseccion">Jugadores</h1>
-          <template is="dom-repeat" items="{{teamData.players}}">
-            <tuintra-peoplecard player="{{item}}" teamId="{{teamid}}"></tuintra-peoplecard>
-          </template>
+            <h1 class="tituloseccion">Jugadores</h1>
+            <template is="dom-repeat" items="{{item.players}}">
+              <tuintra-peoplecard people="{{item}}"></tuintra-peoplecard>
+            </template>
+        </template>
 
 
 

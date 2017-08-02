@@ -11,16 +11,10 @@
       </style>
 
       <div class="thumbnail-team">
-        <template is="dom-if" if="[[!people.showPicture]]">
-          <div class="img-thumbnail-team" style="background-image:url(https://image.freepik.com/free-vector/business-team-avatars-in-a-flat-style_23-2147533927.jpg);"></div>
-        </template>
-        <template is="dom-if" if="[[people.showPicture]]" class="wrap">
-          <div class="img-thumbnail-team" style="background-image:url({{people.playerData.picture}});"></div>
-
-        </template>
+        <div class="img-thumbnail-team" style="background-image:url({{people.picture}});"></div>
         <div class="caption">
           <h3>{{people.name.public}}</h3>
-          <p>{{people.playerData.number}}&nbsp;{{teamInfo.rol}}</p>
+          <p>{{people.number}}&nbsp;{{people.rol}}</p>
         </div>
       </div>
 
