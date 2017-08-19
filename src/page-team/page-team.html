@@ -22,22 +22,30 @@
 
 
 
-        <div class="layout horizontal wrap justified container">
+        <div class="">
 
           <template is="dom-repeat" items="{{teamData}}">
             <div class="text-center cajatitulo">
               <h1 class="tituloseccion">{{item.teamName}} - {{item.category}} {{item.gender}}</h1>
             </div>
-
-            <h1 class="tituloseccion">Entrenadores</h1>
+            
+            <h1 class="white text-left uppercase">Entrenadores</h1>
+            <hr>
+            <div class="flex-players">
             <template is="dom-repeat" items="{{item.staff}}">
               <tuintra-peoplecard people="{{item}}"></tuintra-peoplecard>
             </template>
+            </div>
 
-            <h1 class="tituloseccion">Jugadores</h1>
-            <template is="dom-repeat" items="{{item.players}}">
+            <h1 class="white text-left uppercase">Jugadores</h1>
+            <hr>
+            
+            <div class="flex-players">
+                <template is="dom-repeat" items="{{item.players}}">
               <tuintra-peoplecard people="{{item}}"></tuintra-peoplecard>
             </template>
+            </div>
+            
         </template>
 
 

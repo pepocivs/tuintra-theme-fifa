@@ -1,6 +1,18 @@
 <dom-module id="general-style">
   <template>
     <style>
+        .white{
+            color: white;
+        }
+        .text-left{
+            text-align: left;
+        }
+        .uppercase{
+            text-transform: uppercase;
+        }
+        a{
+            text-decoration: none;
+        }
       body {
         margin: 0;
         font-family: 'Roboto', 'Noto', sans-serif;
@@ -64,6 +76,11 @@
       .tituloseccion:before {
           background: var(--app-primary-color);
       }
+        .flex-players{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
     </style>
   </template>
 </dom-module>
