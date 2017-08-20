@@ -15,10 +15,10 @@
       </style>
 
       <iron-ajax auto
-                 url="http://api.tuintra.com/ginerdelosrios.es/competition"
+                 url="http://api.tuintra.com/ginerdelosrios.es/competitions"
                  params='{}'
                  handle-as="json"
-                 last-response="{{newsResponse}}"></iron-ajax>
+                 last-response="{{competitionResponse}}"></iron-ajax>
 
      <div class="layout horizontal wrap justified container contenedor">
 
@@ -26,8 +26,8 @@
          <h1 class="tituloseccion">Calendario</h1>
        </div>
 
-       <template is="dom-repeat" items="{{newsResponse}}">
-         <tuintra-calendar new="{{item}}"></tuintra-calendar>
+       <template is="dom-repeat" items="{{competitionResponse}}">
+         <tuintra-calendar competition="{{item}}"></tuintra-calendar>
        </template>
 
      </div>
