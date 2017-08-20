@@ -1,44 +1,51 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../general-style.html">
-<link rel="import" href="card-style.html">
+<link rel="import" href="team-card-style.html">
 
 <dom-module id="tuintra-teamcard">
     <template>
-      <style include="general-style card-style iron-flex iron-flex-alignment">
-        :host {
-          display: block;
-        }
-      </style>
+        <style include="general-style card-style iron-flex iron-flex-alignment">
+            :host {
+                display: block;
+                width: 32%;
 
-      <div class="thumbnail-team">
-        <template is="dom-if" if="[[!team.picture]]">
-          <div class="img-thumbnail-team" style="background-image:url(https://image.freepik.com/free-vector/business-team-avatars-in-a-flat-style_23-2147533927.jpg);"></div>
-        </template>
-        <template is="dom-if" if="[[team.picture]]" class="wrap">
-          <div class="img-thumbnail-team" style="background-image:url({{team.picture}});"></div>
+            }
+        </style>
 
-        </template>
-        <div class="caption">
-          <h3>{{team.teamName}}</h3>
-          <p>{{team.category}}&nbsp;{{team.gender}}</p>
-          <button on-tap="goTo" teamid="{{team._id}}" class="button boton">Ir a Equipo</button>
+        <div class="thumbnail-teams">
+            <template is="dom-if" if="[[!team.picture]]">
+                <div class="img-thumbnail-teams-over">
+                <div class="img-thumbnail-teams" style="background-image:url(https://image.freepik.com/free-vector/business-team-avatars-in-a-flat-style_23-2147533927.jpg);"></div>
+                </div>
+            </template>
+            <template is="dom-if" if="[[team.picture]]" class="wrap">
+               <div class="img-thumbnail-teams-over">
+                   <div class="img-thumbnail-teams" style="background-image:url({{team.picture}});"></div>
+               </div>
+                
+
+            </template>
+            <div class="caption-teams">
+                <h3>{{team.teamName}}</h3>
+                <p>{{team.category}}&nbsp;{{team.gender}}</p>
+                <button on-tap="goTo" teamid="{{team._id}}" class="button boton">Ir a Equipo</button>
+            </div>
         </div>
-      </div>
 
     </template>
 
     <script>
-      Polymer({
-        is: 'tuintra-teamcard',
-        properties: {
-          team: {
-            type: Object
-          }
-        },
-        goTo: function(e) {
-          console.log(e.target.teamid);
-          window.location.href='/team?id='+e.target.teamid;
-        }
-      });
+        Polymer({
+            is: 'tuintra-teamcard',
+            properties: {
+                team: {
+                    type: Object
+                }
+            },
+            goTo: function(e) {
+                console.log(e.target.teamid);
+                window.location.href='/team?id='+e.target.teamid;
+            }
+        });
     </script>
 </dom-module>

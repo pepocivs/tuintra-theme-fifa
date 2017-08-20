@@ -1,86 +1,142 @@
 <dom-module id="general-style">
-  <template>
-    <style>
-        .white{
-            color: white;
-        }
-        .text-left{
-            text-align: left;
-        }
-        .uppercase{
-            text-transform: uppercase;
-        }
-        a{
-            text-decoration: none;
-        }
-      body {
-        margin: 0;
-        font-family: 'Roboto', 'Noto', sans-serif;
-        line-height: 1.5;
-        min-height: 100vh;
-        background-image: url(../images/bg1.png);
-        background-size: cover;
-        background-position: center center;
-        height: 100vh;
-        background-attachment: fixed;
-      }
-      .card {
-        margin: 24px;
-        padding: 16px;
-        color: #757575;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-      }
+    <template>
+        <style>
+            .white{
+                color: white;
+            }
+            h8{
+                font-size: 1.5vh;
+            }
+            p{
+                font-size: 1.6vh;
+            }
+            .font-light{
+                font-family: "raleway";
+                font-weight: 100; 
+            }
+            .text-left{
+                text-align: left;
+            }
+            .uppercase{
+                text-transform: uppercase;
+            }
+            a{
+                text-decoration: none;
+            }
+            div.contenedor {
+                background-color: rgba(255, 255, 255, 0.04);
+                margin-top: 35px;
+                -webkit-box-shadow: 0px 0px 37px 3px rgba(0,0,0,0.04);
+                -moz-box-shadow: 0px 0px 37px 3px rgba(0,0,0,0.04);
+                box-shadow: 0px 0px 37px 3px rgba(0,0,0,0.04);
+                padding: 12px 19px 21px 17px;
+            }
+            body {
+                margin: 0;
+                font-family: 'Roboto', 'Noto', sans-serif;
+                line-height: 1.5;
+                min-height: 100vh;
+                background-image: url(../images/bg1.png);
+                background-size: cover;
+                background-position: center center;
+                height: 100vh;
+                background-attachment: fixed;
+            }
+            .flat-button{
+                text-align: center;
+                background: #bdc3c7;
+                color: white;
+                border-radius: 10px;
+                padding: 16px;
+                font-weight: 800;
+                margin: 19px;
+                box-shadow: 0px 5px 0px 0px #95a5a6;
+                justify-content: center;
+                margin-right: 0;
+                margin-left: 0;
+            }
+            .boton {
+                background-color: var(--app-primary-color);
+                padding: 8px;
+                border: none;
+                color: white;
+                text-transform: uppercase;
+                font-weight: 800;
+                cursor: pointer;
+            }
+            .thumbnail-teams:hover button.boton{
+                background-color: #ffffff;
+                color: var(--app-primary-color);
+                -webkit-transition: all .4s ease-in-out; */
+                -o-transition: all .4s ease-in-out;
+                transition: all .4s ease-in-out; */
+            }
+            .img-thumbnail-teams{
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+                color: white;
+                -webkit-transition: all 2s ease-in;
+                -o-transition: all .2s ease-in-out;
+                transition: all .2s ease-in-out;
+            }
+            .card {
+                margin: 24px;
+                padding: 16px;
+                color: #757575;
+                border-radius: 5px;
+                background-color: #fff;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+            }
 
-      .circle {
-        display: inline-block;
-        width: 64px;
-        height: 64px;
-        text-align: center;
-        color: #555;
-        border-radius: 50%;
-        background: #ddd;
-        font-size: 30px;
-        line-height: 64px;
-      }
-      h1 {
-        margin: 16px 0;
-        color: #212121;
-        font-size: 22px;
-      }
-      h1.tituloseccion {
-          color: white;
-          text-transform: uppercase;
-          font-family: "raleway";
-          font-weight: 100;
-          font-size: 2em;
-          letter-spacing: 4px;
-          text-align: center;
-      }
-      .cajatitulo {
-          margin: 23px 0 33px;
-          width: 100%;
-          position: relative;
-      }
-      .tituloseccion:before {
-          position: absolute;
-          width: 100px;
-          height: 2px;
-          margin: 0 auto;
-          left: 0;
-          right: 0;
-          bottom: -5px;
-          content: "";
-      }
-      .tituloseccion:before {
-          background: var(--app-primary-color);
-      }
-        .flex-players{
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-        }
-    </style>
-  </template>
+            .circle {
+                display: inline-block;
+                width: 64px;
+                height: 64px;
+                text-align: center;
+                color: #555;
+                border-radius: 50%;
+                background: #ddd;
+                font-size: 30px;
+                line-height: 64px;
+            }
+            h1 {
+                margin: 16px 0;
+                color: #212121;
+                font-size: 22px;
+            }
+            h1.tituloseccion {
+                color: white;
+                text-transform: uppercase;
+                font-family: "raleway";
+                font-weight: 100;
+                font-size: 2em;
+                letter-spacing: 4px;
+                text-align: center;
+            }
+            .cajatitulo {
+                margin: 23px 0 33px;
+                width: 100%;
+                position: relative;
+            }
+            .tituloseccion:before {
+                position: absolute;
+                width: 100px;
+                height: 2px;
+                margin: 0 auto;
+                left: 0;
+                right: 0;
+                bottom: -5px;
+                content: "";
+            }
+            .tituloseccion:before {
+                background: var(--app-primary-color);
+            }
+            .flex-players{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+            }
+        </style>
+    </template>
 </dom-module>

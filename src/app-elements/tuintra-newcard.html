@@ -1,29 +1,39 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../general-style.html">
-<link rel="import" href="card-style.html">
+<link rel="import" href="news-style.html">
 
 <dom-module id="tuintra-newcard">
     <template>
-      <style include="general-style card-style iron-flex iron-flex-alignment">
-        :host {
-          display: block;
-        }
-      </style>
+        <style include="general-style card-style iron-flex iron-flex-alignment">
+            :host {
+                display: block;
+                width: 100%;
+            }
+        </style>
 
-      <div class="thumbnail-team">
-        <template is="dom-if" if="[[!new.image]]">
-          <div class="img-thumbnail-team" style="background-image:url(https://image.freepik.com/free-vector/business-team-avatars-in-a-flat-style_23-2147533927.jpg);"></div>
-        </template>
-        <template is="dom-if" if="[[new.image]]" class="wrap">
-          <div class="img-thumbnail-team" style="background-image:url({{new.image}});"></div>
+        <div class="thumbnail-news white">
+            <template is="dom-if" if="[[!new.image]]">
+                <div class="img-thumbnail-team" style="background-image:url(https://image.freepik.com/free-vector/business-team-avatars-in-a-flat-style_23-2147533927.jpg);"></div>
+            </template>
+            <template is="dom-if" if="[[new.image]]" class="wrap">
+               <div class="img-thumbnail-news-over">
+                   <div class="img-thumbnail-teams" style="background-image:url({{new.image}});"></div>
+               </div>
+                
 
-        </template>
-        <div class="caption">
-          <h3>{{new.title}}</h3>
-          <p>{{new.subtitle}}</p>
-          <button on-tap="goTo" teamid="{{item._id}}" class="button boton">Leer más</button>
+            </template>
+            <div class="caption">
+            	<h8 class="raleway uppercase">Noticia</h8>
+                <h3 class="raleway fontbold uppercase">{{new.title}}</h3>
+                <p class="raleway font-light">{{new.subtitle}}</p>
+                <p class="nombre">
+	                <i class="fa fa-user"></i>&nbsp;&nbsp;{{new.author}} &nbsp;&nbsp;
+	                <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{new.date}}
+                </p>
+                <button on-tap="goTo" teamid="{{item._id}}" class="button boton">Leer más</button>        
+            </div>
         </div>
-      </div>
+        <hr>
 
 
     </template>
@@ -32,9 +42,9 @@
         Polymer({
             is: 'tuintra-newcard',
             properties: {
-              new: {
-                type: Object
-              }
+                new: {
+                    type: Object
+                }
             }
         });
     </script>
