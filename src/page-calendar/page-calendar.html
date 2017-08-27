@@ -8,40 +8,60 @@
 
 <dom-module id="page-calendar">
     <template>
-      <style include="general-style iron-flex iron-flex-alignment">
-        :host {
-          display: block;
-        }
-      </style>
+        <style include="general-style iron-flex iron-flex-alignment">
+            :host {
+                display: block;
+            }
+        </style>
 
-      <iron-ajax auto
-                 url="http://api.tuintra.com/ginerdelosrios.es/competitions"
-                 params='{}'
-                 handle-as="json"
-                 last-response="{{competitionResponse}}"></iron-ajax>
+        <iron-ajax auto
+                   url="http://api.tuintra.com/ginerdelosrios.es/competitions"
+                   params='{}'
+                   handle-as="json"
+                   last-response="{{competitionResponse}}"></iron-ajax>
 
-     <div class="layout horizontal wrap justified container contenedor">
+        <div class="layout horizontal wrap justified container contenedor">
 
-       <div class="text-center cajatitulo">
-         <h1 class="tituloseccion">Calendario</h1>
-       </div>
+            <div class="text-center cajatitulo">
+                <h1 class="tituloseccion">Calendario</h1>
+            </div>
+            
+               
+               <paper-dropdown-menu label="calendario">
+                <paper-listbox slot="dropdown-content" class="dropdown-content" selected="1">
+                   
+                    <template is="dom-repeat" items="{{competitionResponse}}" >
 
-       <template is="dom-repeat" items="{{competitionResponse}}">
-         <tuintra-calendar competition="{{item}}"></tuintra-calendar>
-       </template>
+                        <paper-item on-tap="goTo" competitionid="{{item._id}}">{{item.competitionName}}</paper-item>
+                    </template>
+                    
+                </paper-listbox>
+            </paper-dropdown-menu>
+            
+            
+            
 
-     </div>
+            <template is="dom-repeat" items="{{competitionResponse}}">
+                <tuintra-calendar competition="{{item}}"></tuintra-calendar>
+            </template>
+
+        </div>
 
     </template>
 
     <script>
         Polymer({
-          is: 'page-calendar',
-          properties: {
-            newsResponse: {
-              type: Object
+            is: 'page-calendar',
+            properties: {
+                competitionResponse: {
+                   type: Object
+                }
+            },
+            goTo: function(e) {
+                console.log(e.target.competitionid);
+                window.location.href='/calendar?id='+e.target.competitionid;
+            
             }
-          }
         });
     </script>
 </dom-module>
